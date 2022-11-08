@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<!-- xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online reservation for playing fields</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Online reservation for playing fields</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/view/roles}">Roles</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/view/users}">Users</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/view/reservations}">Reservations</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/view/sportsVenues}">Sports Venues</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/view/sportsFields}">Sports Fields</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/view/fieldTypes}">Field Types</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container my-2">
+    <h1>Reservation Management Panel</h1>
+    <hr>
+    <h2>Save Reservation</h2>
+
+    <form action="#" th:action="@{/view/saveReservation}" th:object="${sportsFieldReservation}" method="post">
+
+        <div>
+        <input
+                type="hidden"  placeholder="User id" class="form-control mb-4 col-4"
+                th:each="user : ${users}" th:if="${#authentication.name == user.username}" th:value="${user.id}"
+                 id="user" name="user"
+        >
+        </div>
+
+<!--        <input type="text" th:field="*{sportsField}" placeholder="Sports Field id" class="form-control mb-4 col-4">-->
+
+            <select th:field="*{sportsField}" class="form-control mb-4 col-4">
+                <option th:each="sportsField : ${sportsFields}" th:value="${sportsField.id}" th:text="${sportsField.toString()}">
+                </option>
+            </select>
+
+
+
+        <input type="text" th:field="*{startDate}" placeholder="Start date YYYY-MM-DD HH:mm" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{endDate}" placeholder="End date YYYY-MM-DD HH:mm" class="form-control mb-4 col-4">
+
+
+        <button type="submit" class="btn btn-info col-2"> Save Reservation</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/view/reservations}">Back to Reservation List</a>
+
+</div>
+
+</body>
+</html>

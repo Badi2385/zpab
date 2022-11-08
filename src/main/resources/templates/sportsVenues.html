@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<!-- xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online reservation for playing fields</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Online reservation for playing fields</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/view/roles}">Roles</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/view/users}">Users</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/view/reservations}">Reservations</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/view/sportsVenues}">Sports Venues</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/view/sportsFields}">Sports Fields</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/view/fieldTypes}">Field Types</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container my-2">
+    <h1>Sports Venue Management Panel</h1>
+    <hr>
+    <h2>List of Sports Venues</h2>
+
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href = "@{/view/showNewSportsVenueForm}" class="btn btn-primary btn-sm mb-3"> Add Sports Venue </a>
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Sports Venue id</th>
+            <th>Sports Venue city</th>
+            <th>Sports Venue street</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sportsVenue : ${listSportsVenues}">
+            <td th:text="${sportsVenue.id}"></td>
+            <td th:text="${sportsVenue.city}"></td>
+            <td th:text="${sportsVenue.street}"></td>
+            <td> <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/view/showUpdateSportsVenueForm/{id}(id=${sportsVenue.id})}" class="btn btn-primary">Update</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/view/deleteSportsVenue/{id}(id=${sportsVenue.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
