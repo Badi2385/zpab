@@ -17,7 +17,7 @@ public class SportsFieldTypeServiceImpl implements SportsFieldTypeService{
 
     @Override
     public List<SportsFieldType> getAllSportsFieldTypes() {
-        return sportsFieldTypeRepository.findAll();
+        return sportsFieldTypeRepository.findAll(Sort.by(Sort.Direction.ASC, "type"));
     }
 
     @Override
