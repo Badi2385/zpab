@@ -1,6 +1,9 @@
 package pl.gov.orlikiapi.sportsfieldreservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.gov.orlikiapi.role.model.Role;
 import pl.gov.orlikiapi.sportsfieldreservation.model.SportsFieldReservation;
@@ -39,5 +42,11 @@ public class SportsFieldReservationServiceImpl implements SportsFieldReservation
     @Override
     public void deleteSportsFieldReservationById(Long id) {
         this.sportsFieldReservationRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<SportsFieldReservation> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.sportsFieldReservationRepository.findAll(pageable);
     }
 }

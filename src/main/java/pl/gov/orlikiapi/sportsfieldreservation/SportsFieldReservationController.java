@@ -1,6 +1,7 @@
 package pl.gov.orlikiapi.sportsfieldreservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import pl.gov.orlikiapi.user.UserRepository;
 import pl.gov.orlikiapi.user.UserService;
 import pl.gov.orlikiapi.user.model.User;
 
+import java.util.List;
+
 @Controller
 public class SportsFieldReservationController {
 
@@ -26,14 +29,28 @@ public class SportsFieldReservationController {
     @Autowired
     private SportsFieldService sportsFieldService;
 
-    @GetMapping("view/reservations")
-    public String viewRolesPage(Model model) {
-        model.addAttribute("listReservations", sportsFieldReservationService.getAllSportsFieldReservations());
+    @GetMapping("view/reservations/{pageNo}")
+    public String viewPaginatedReservations(@PathVariable(value = "pageNo") int pageNo, Model model) {
+        int pageSize = 10;
+
+        Page<SportsFieldReservation> page = sportsFieldReservationService.findPaginated(pageNo, pageSize);
+        List<SportsFieldReservation> reservationList = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listReservations", reservationList);
         return "reservations";
     }
 
+    @GetMapping("view/reservations")
+    public String viewReservationsPage(Model model) {
+//        model.addAttribute("listReservations", sportsFieldReservationService.getAllSportsFieldReservations());
+        return viewPaginatedReservations(1, model);
+    }
+
     @GetMapping("view/showNewReservationForm")
-    public String showNewRoleForm(Model model) {
+    public String showNewReservationForm(Model model) {
         SportsFieldReservation sportsFieldReservation = new SportsFieldReservation();
         model.addAttribute("sportsFieldReservation", sportsFieldReservation);
         model.addAttribute("users", userService.getAllUsers());
@@ -55,7 +72,7 @@ public class SportsFieldReservationController {
     }
 
     @GetMapping("view/deleteReservation/{id}")
-    public String deleteRole(@PathVariable (value = "id") Long id) {
+    public String deleteReservation(@PathVariable (value = "id") Long id) {
         this.sportsFieldReservationService.deleteSportsFieldReservationById(id);
         return "redirect:/view/reservations";
     }

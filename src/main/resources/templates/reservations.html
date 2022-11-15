@@ -46,9 +46,9 @@
     <hr>
     <h2>List of Reservations</h2>
 
-    <a th:href = "@{/view/showNewReservationForm}" class="btn btn-primary btn-sm mb-3"> Add Reservation </a>
+    <a th:href="@{/view/showNewReservationForm}" class="btn btn-primary btn-sm mb-3"> Add Reservation </a>
 
-    <table border="1" class = "table table-striped table-responsive-md">
+    <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
             <th>Reservation id</th>
@@ -67,16 +67,44 @@
             <td th:text="${reservation.sportsField}"></td>
             <td th:text="${reservation.user.username}"></td>
             <td>
-                <a th:if="${#authentication.name == reservation.user.username}" th:href="@{/view/showUpdateReservationForm/{id}(id=${reservation.id})}" class="btn btn-primary">Update</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/view/showUpdateReservationForm/{id}(id=${reservation.id})}" class="btn btn-primary">Update</a>
-                <a th:if="${#authentication.name == reservation.user.username}" th:href="@{/view/deleteReservation/{id}(id=${reservation.id})}" class="btn btn-danger">Delete</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/view/deleteReservation/{id}(id=${reservation.id})}" class="btn btn-danger">Delete</a>
+                <a th:if="${#authentication.name == reservation.user.username}"
+                   th:href="@{/view/showUpdateReservationForm/{id}(id=${reservation.id})}" class="btn btn-primary">Update</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')"
+                   th:href="@{/view/showUpdateReservationForm/{id}(id=${reservation.id})}" class="btn btn-primary">Update</a>
+                <a th:if="${#authentication.name == reservation.user.username}"
+                   th:href="@{/view/deleteReservation/{id}(id=${reservation.id})}" class="btn btn-danger">Delete</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/view/deleteReservation/{id}(id=${reservation.id})}"
+                   class="btn btn-danger">Delete</a>
 
             </td>
         </tr>
         </tbody>
     </table>
-<!--    <div th:text="${#authentication.name}" ></div>-->
+
+    <div th:if="${totalPages > 1}">
+        <div class="row col-sm-10">
+            <div class="col-sm-4">
+                Total Reservations: [[${totalItems}]]
+            </div>
+            <div class="col-sm-2">
+            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/view/reservations/' + ${i}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+            </span>
+            </div>
+            <div class="col-sm-2">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/view/reservations/' + ${currentPage + 1}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-2">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/view/reservations/' + ${totalPages}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
+
+    <!--    <div th:text="${#authentication.name}" ></div>-->
 </div>
 
 </body>
