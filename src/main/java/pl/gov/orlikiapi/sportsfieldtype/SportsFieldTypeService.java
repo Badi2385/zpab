@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SportsFieldTypeService {
     List<SportsFieldType> getAllSportsFieldTypes();
+    List<SportsFieldType> getAllSportsFieldTypesSorted();
     void saveSportsFieldType(SportsFieldType sportsFieldType);
     SportsFieldType getSportsFieldTypeById(Long id);
     void deleteSportsFieldTypeById(Long id);

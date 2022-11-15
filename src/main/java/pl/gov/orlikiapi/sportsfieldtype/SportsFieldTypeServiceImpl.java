@@ -1,6 +1,7 @@
 package pl.gov.orlikiapi.sportsfieldtype;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.gov.orlikiapi.role.model.Role;
 import pl.gov.orlikiapi.sportsfieldtype.model.SportsFieldType;
@@ -17,6 +18,11 @@ public class SportsFieldTypeServiceImpl implements SportsFieldTypeService{
     @Override
     public List<SportsFieldType> getAllSportsFieldTypes() {
         return sportsFieldTypeRepository.findAll();
+    }
+
+    @Override
+    public List<SportsFieldType> getAllSportsFieldTypesSorted() {
+        return sportsFieldTypeRepository.findAll(Sort.by(Sort.Direction.DESC, "type"));
     }
 
     @Override

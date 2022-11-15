@@ -13,13 +13,41 @@ import pl.gov.orlikiapi.sportsvenue.model.SportsVenue;
 @Controller
 public class SportsVenueController {
 
+    private Boolean sortByCity = false;
+    private Boolean sortByStreet = false;
+
+
     @Autowired
     private SportsVenueService sportsVenueService;
 
     @GetMapping("view/sportsVenues")
     public String viewRolesPage(Model model) {
-        model.addAttribute("listSportsVenues", sportsVenueService.getAllSportsVenues());
+        if(sortByCity && ! sortByStreet)
+        {
+            model.addAttribute("listSportsVenues", sportsVenueService.getAllSportsVenuesSortedByCity());
+        }
+        else if (sortByStreet && !sortByCity){
+            model.addAttribute("listSportsVenues", sportsVenueService.getAllSportsVenuesSortedByStreet());
+        }
+        else if (sortByStreet && sortByCity){
+            model.addAttribute("listSportsVenues", sportsVenueService.getAllSportsVenuesSortedByStreetAndCity());
+        }
+        else {
+            model.addAttribute("listSportsVenues", sportsVenueService.getAllSportsVenues());
+        }
         return "sportsVenues";
+    }
+
+    @PostMapping("view/sortVenuesByCity")
+    public String viewRolesPageByCity(Model model) {
+        sortByCity = !sortByCity;
+        return "redirect:/view/sportsVenues";
+    }
+
+    @PostMapping("view/sortVenuesByStreet")
+    public String viewRolesPageByStreet(Model model) {
+        sortByStreet = !sortByStreet;
+        return "redirect:/view/sportsVenues";
     }
 
     @GetMapping("view/showNewSportsVenueForm")

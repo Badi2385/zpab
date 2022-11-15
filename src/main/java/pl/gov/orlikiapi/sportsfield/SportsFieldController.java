@@ -13,13 +13,61 @@ import pl.gov.orlikiapi.sportsfield.model.SportsField;
 @Controller
 public class SportsFieldController {
 
+    private Boolean sortByCity = false;
+    private Boolean sortByStreet = false;
+    private Boolean sortByType = false;
+
+
     @Autowired
     private SportsFieldService sportsFieldService;
 
     @GetMapping("view/sportsFields")
     public String viewRolesPage(Model model) {
-        model.addAttribute("listSportsFields", sportsFieldService.getAllSportsFields());
+
+        if(sortByCity && !sortByStreet && !sortByType)
+        {
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByCity());
+        }
+        else if (!sortByCity && sortByStreet && !sortByType){
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByStreet());
+        }
+        else if (!sortByCity && !sortByStreet && sortByType){
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByType());
+        }
+        else if (!sortByStreet && sortByCity && sortByType){
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByCityAndType());
+        }
+        else if (sortByStreet && !sortByCity && sortByType){
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByStreetAndType());
+        }
+        else if (sortByStreet && sortByCity && !sortByType){
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByStreetAndCity());
+        }
+        else if (sortByStreet && sortByCity && sortByType){
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsVenuesSortedByStreetAndCityAndType());
+        }
+        else {
+            model.addAttribute("listSportsFields", sportsFieldService.getAllSportsFields());
+        }
         return "sportsFields";
+    }
+
+    @PostMapping("view/sortFieldsByCity")
+    public String viewRolesPageByCity(Model model) {
+        sortByCity = !sortByCity;
+        return "redirect:/view/sportsFields";
+    }
+
+    @PostMapping("view/sortFieldsByStreet")
+    public String viewRolesPageByStreet(Model model) {
+        sortByStreet = !sortByStreet;
+        return "redirect:/view/sportsFields";
+    }
+
+    @PostMapping("view/sortFieldsByType")
+    public String viewRolesPageByType(Model model) {
+        sortByType = !sortByType;
+        return "redirect:/view/sportsFields";
     }
 
     @GetMapping("view/showNewSportsFieldForm")

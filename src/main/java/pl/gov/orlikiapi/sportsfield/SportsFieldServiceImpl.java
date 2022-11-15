@@ -1,6 +1,7 @@
 package pl.gov.orlikiapi.sportsfield;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.gov.orlikiapi.role.model.Role;
 import pl.gov.orlikiapi.sportsfield.model.SportsField;
@@ -16,6 +17,41 @@ public class SportsFieldServiceImpl implements SportsFieldService{
     @Override
     public List<SportsField> getAllSportsFields() {
         return sportsFieldRepository.findAll();
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByCity() {
+        return sportsFieldRepository.findAll(Sort.by(Sort.Direction.DESC, "SportsVenue.city"));
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByStreet() {
+        return sportsFieldRepository.findAll(Sort.by(Sort.Direction.DESC, "SportsVenue.street"));
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByType() {
+        return sportsFieldRepository.findAll(Sort.by(Sort.Direction.DESC, "SportsFieldType.type"));
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByCityAndType() {
+        return sportsFieldRepository.findAll(Sort.by(new Sort.Order(Sort.Direction.DESC, "SportsVenue.city"), new Sort.Order(Sort.Direction.DESC, "SportsFieldType.type")));
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByStreetAndType() {
+        return sportsFieldRepository.findAll(Sort.by(new Sort.Order(Sort.Direction.DESC, "SportsVenue.street"), new Sort.Order(Sort.Direction.DESC, "SportsFieldType.type")));
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByStreetAndCity() {
+        return sportsFieldRepository.findAll(Sort.by(new Sort.Order(Sort.Direction.DESC, "SportsVenue.street"), new Sort.Order(Sort.Direction.DESC, "SportsVenue.city")));
+    }
+
+    @Override
+    public List<SportsField> getAllSportsVenuesSortedByStreetAndCityAndType()  {
+        return sportsFieldRepository.findAll(Sort.by(new Sort.Order(Sort.Direction.DESC, "SportsVenue.street"), new Sort.Order(Sort.Direction.DESC, "SportsVenue.city"), new Sort.Order(Sort.Direction.DESC, "SportsFieldType.type")));
     }
 
     @Override

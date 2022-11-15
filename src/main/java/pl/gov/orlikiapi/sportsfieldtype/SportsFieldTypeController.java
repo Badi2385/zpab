@@ -13,13 +13,27 @@ import pl.gov.orlikiapi.sportsfieldtype.model.SportsFieldType;
 @Controller
 public class SportsFieldTypeController {
 
+    private Boolean isSorted = false;
+
     @Autowired
     private SportsFieldTypeService sportsFieldTypeService;
 
     @GetMapping("view/fieldTypes")
     public String viewRolesPage(Model model) {
-        model.addAttribute("listFieldTypes", sportsFieldTypeService.getAllSportsFieldTypes());
+        if(isSorted)
+        {
+            model.addAttribute("listFieldTypes", sportsFieldTypeService.getAllSportsFieldTypesSorted());
+        }
+        else {
+            model.addAttribute("listFieldTypes", sportsFieldTypeService.getAllSportsFieldTypes());
+        }
         return "fieldTypes";
+    }
+
+    @PostMapping("view/sortFieldTypes")
+    public String viewRolesPageByCity(Model model) {
+        isSorted = !isSorted;
+        return "redirect:/view/fieldTypes";
     }
 
     @GetMapping("view/showNewFieldTypeForm")
