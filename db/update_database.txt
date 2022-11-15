@@ -1,0 +1,218 @@
+-- ROLE
+INSERT INTO role (name) VALUES ('ROLE_ADMIN');
+INSERT INTO role (name) VALUES ('ROLE_USER');
+
+-- USER: ADMIN hasło dla każdego usera i admina to testhasło dla każdego usera i admina to test
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'admin'
+);
+insert into users_roles (user_id, role_id) values (1, 1);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'lukasz'
+);
+insert into users_roles (user_id, role_id) values (2, 1);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'ola'
+);
+insert into users_roles (user_id, role_id) values (3, 1);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'mila'
+);
+insert into users_roles (user_id, role_id) values (4, 1);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'kila'
+);
+insert into users_roles (user_id, role_id) values (5, 1);
+
+-- USER: USER
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Bartek'
+);
+insert into users_roles (user_id, role_id) values (6, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Łukasz'
+);
+insert into users_roles (user_id, role_id) values (7, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Robert'
+);
+insert into users_roles (user_id, role_id) values (8, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Malwina'
+);
+insert into users_roles (user_id, role_id) values (9, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Celina'
+);
+insert into users_roles (user_id, role_id) values (10, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Edyta'
+);
+insert into users_roles (user_id, role_id) values (11, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Asia'
+);
+insert into users_roles (user_id, role_id) values (12, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Kamil'
+);
+insert into users_roles (user_id, role_id) values (13, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Agata'
+);
+insert into users_roles (user_id, role_id) values (14, 2);
+
+insert into user (password, username) values (
+'$2a$10$AL4HyaaETFkvZvfWPPVwoe6stDV6BKsmqxbwaZtn1nMlyCBvYzZYO',
+'Jakub'
+);
+insert into users_roles (user_id, role_id) values (15, 2);
+
+-- sports_field_type
+insert into sports_field_type (id, type) values (1, 'Koszykówka');
+insert into sports_field_type (id, type) values (2, 'Piłka Nożna');
+insert into sports_field_type (id, type) values (3, 'Siatkówka');
+insert into sports_field_type (id, type) values (4, 'Tenis');
+insert into sports_field_type (id, type) values (5, 'Piłka ręczna');
+
+-- sports_venue
+insert into sports_venue (id, city, street) values (1, 'Łódź', 'Żeromskiego 3 ');
+insert into sports_venue (id, city, street) values (2, 'Łódź', 'Wólczańska 220');
+insert into sports_venue (id, city, street) values (3, 'Łódź', 'Politechniki 70');
+insert into sports_venue (id, city, street) values (4, 'Łódź', 'Obywatelska 25');
+insert into sports_venue (id, city, street) values (5, 'Łódź', 'Kościuszki 124');
+insert into sports_venue (id, city, street) values (6, 'Warszawa', 'Moniuszki 7');
+insert into sports_venue (id, city, street) values (7, 'Warszawa', 'Gdańska 90');
+insert into sports_venue (id, city, street) values (8, 'Warszawa', 'Wólczańska 38');
+insert into sports_venue (id, city, street) values (9, 'Warszawa', 'Wschodnia 142');
+insert into sports_venue (id, city, street) values (10, 'Warszawa', 'Zachodnia 68');
+
+-- sports_field
+insert into sports_field (id, type_id, sports_venue_id) values (1, 1, 1);
+insert into sports_field (id, type_id, sports_venue_id) values (2, 2, 1);
+
+insert into sports_field (id, type_id, sports_venue_id) values (3, 3, 2);
+insert into sports_field (id, type_id, sports_venue_id) values (4, 4, 2);
+
+insert into sports_field (id, type_id, sports_venue_id) values (5, 5, 3);
+insert into sports_field (id, type_id, sports_venue_id) values (6, 1, 3);
+
+insert into sports_field (id, type_id, sports_venue_id) values (7, 2, 4);
+insert into sports_field (id, type_id, sports_venue_id) values (8, 3, 4);
+
+insert into sports_field (id, type_id, sports_venue_id) values (9, 4, 5);
+insert into sports_field (id, type_id, sports_venue_id) values (10, 5, 5);
+
+insert into sports_field (id, type_id, sports_venue_id) values (11, 1, 6);
+insert into sports_field (id, type_id, sports_venue_id) values (12, 2, 6);
+
+insert into sports_field (id, type_id, sports_venue_id) values (13, 3, 7);
+insert into sports_field (id, type_id, sports_venue_id) values (14, 4, 7);
+
+insert into sports_field (id, type_id, sports_venue_id) values (15, 5, 8);
+insert into sports_field (id, type_id, sports_venue_id) values (16, 1, 8);
+
+insert into sports_field (id, type_id, sports_venue_id) values (17, 2, 9);
+insert into sports_field (id, type_id, sports_venue_id) values (18, 3, 9);
+
+insert into sports_field (id, type_id, sports_venue_id) values (19, 4, 10);
+insert into sports_field (id, type_id, sports_venue_id) values (20, 5, 10);
+
+-- RESERVATIONS
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (1, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 1, 6);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (2, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 2, 6);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (3, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 1, 6);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (4, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 3, 7);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (5, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 4, 7);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (6, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 5, 7);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (7, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 6, 8);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (8, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 7, 8);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (9, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 7, 8);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (10, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 7, 9);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (11, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 8, 9);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (12, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 8, 9);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (13, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 9, 10);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (14, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 10, 10);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (15, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 11, 10);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (16, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 12, 11);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (17, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 13, 11);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (18, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 13, 11);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (19, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 14, 12);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (20, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 14, 12);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (21, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 14, 12);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (22, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 15, 13);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (23, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 16, 13);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (24, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 16, 13);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (25, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 17, 14);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (26, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 17, 14);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (27, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 17, 14);
+
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (28, '2022-11-13 13:00:00', '2022-11-13 12:00:00', 18, 15);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (29, '2022-11-14 13:00:00', '2022-11-14 12:00:00', 19, 15);
+insert into sports_field_reservation (id, end_date, start_date, sports_field_id, user_id)
+values (30, '2022-11-15 13:00:00', '2022-11-15 12:00:00', 20, 15);
+
+INSERT INTO hibernate_sequence (next_val) VALUES (100);
