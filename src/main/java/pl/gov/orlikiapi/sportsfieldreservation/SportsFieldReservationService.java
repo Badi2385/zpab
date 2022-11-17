@@ -14,5 +14,5 @@ public interface SportsFieldReservationService {
 
     void deleteSportsFieldReservationById(Long id);
 
-    Page<SportsFieldReservation> findPaginated(int pageNo, int pageSize);
+    Page<SportsFieldReservation> findPaginated(int pageNo, int pageSize, Boolean sortByCity, Boolean sortByStreet, Boolean sortByType, Boolean sortByEndDate, String findByEndDate, String findByStreet, String findByCity, String findByType);
 }

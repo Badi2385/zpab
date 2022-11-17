@@ -104,6 +104,40 @@
         </div>
     </div>
 
+    <form action="#" th:action="@{/view/sortReservationsByEndDate}"  method="post">
+        <button type="submit" class="btn btn-info col-2"> Sort data by End date</button>
+    </form>
+    <form action="#" th:action="@{/view/sortReservationsByStreet}"  method="post">
+        <button type="submit" class="btn btn-info col-2"> Sort data by Street</button>
+    </form>
+    <form action="#" th:action="@{/view/sortReservationsByCity}"  method="post">
+        <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
+    </form>
+    </form>
+    <form action="#" th:action="@{/view/sortReservationsByType}"  method="post">
+        <button type="submit" class="btn btn-info col-2"> Sort data by Field Type</button>
+    </form>
+
+
+    <form action="#" th:action="@{/view/findReservationsByEndDate}" method="post">
+        <input type="text" th:value="${query}" name="query" placeholder="YYYY-MM-DD HH:mm" />
+        <button type="submit" class="btn btn-info col-2"> Filter reservations by end date</button>
+    </form>
+
+    <form action="#" th:action="@{/view/findReservationsByCity}" method="post">
+        <input type="text" th:value="${query}" name="query" placeholder="city name" />
+        <button type="submit" class="btn btn-info col-2"> Filter reservations by City</button>
+    </form>
+
+    <form action="#" th:action="@{/view/findReservationsByStreet}" method="post">
+        <input type="text" th:value="${query}" name="query" placeholder="Street name" />
+        <button type="submit" class="btn btn-info col-2"> Filter reservations by Street</button>
+    </form>
+    <form action="#" th:action="@{/view/findReservationsByType}" method="post">
+        <input type="text" th:value="${query}" name="query" placeholder="Street name" />
+        <button type="submit" class="btn btn-info col-2"> Filter reservations by Field Type</button>
+    </form>
+
     <!--    <div th:text="${#authentication.name}" ></div>-->
 </div>
 

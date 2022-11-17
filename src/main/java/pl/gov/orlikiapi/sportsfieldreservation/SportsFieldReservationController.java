@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.gov.orlikiapi.role.model.Role;
 import pl.gov.orlikiapi.sportsfield.SportsFieldService;
 import pl.gov.orlikiapi.sportsfieldreservation.model.SportsFieldReservation;
@@ -19,6 +16,16 @@ import java.util.List;
 
 @Controller
 public class SportsFieldReservationController {
+
+    private Boolean sortByCity = false;
+    private Boolean sortByStreet = false;
+    private Boolean sortByEndDate = false;
+    private Boolean sortByType = false;
+    private String findByEndDate = "";
+    private String findByStreet = "";
+    private String findByCity = "";
+    private String findByType = "";
+
 
     @Autowired
     private SportsFieldReservationService sportsFieldReservationService;
@@ -33,7 +40,7 @@ public class SportsFieldReservationController {
     public String viewPaginatedReservations(@PathVariable(value = "pageNo") int pageNo, Model model) {
         int pageSize = 10;
 
-        Page<SportsFieldReservation> page = sportsFieldReservationService.findPaginated(pageNo, pageSize);
+        Page<SportsFieldReservation> page = sportsFieldReservationService.findPaginated(pageNo, pageSize, sortByCity, sortByStreet, sortByType, sortByEndDate, findByEndDate, findByStreet, findByCity, findByType);
         List<SportsFieldReservation> reservationList = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
@@ -46,7 +53,60 @@ public class SportsFieldReservationController {
     @GetMapping("view/reservations")
     public String viewReservationsPage(Model model) {
 //        model.addAttribute("listReservations", sportsFieldReservationService.getAllSportsFieldReservations());
-        return viewPaginatedReservations(1, model);
+        String paginatedReservations = viewPaginatedReservations(1, model);
+        return paginatedReservations;
+    }
+
+    @PostMapping("view/sortReservationsByCity")
+    public String viewReservationsPageByCity(Model model) {
+        sortByCity = !sortByCity;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/sortReservationsByStreet")
+    public String viewReservationsPageByStreet(Model model) {
+        sortByStreet = !sortByStreet;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/sortReservationsByEndDate")
+    public String viewReservationsPagePageByEndDate(Model model) {
+        sortByEndDate = !sortByEndDate;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/sortReservationsByType")
+    public String viewReservationsPagePageByType(Model model) {
+        sortByType = !sortByType;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/findReservationsByEndDate")
+    public String viewReservationsPagePageByEndDate(Model model, @RequestParam String query) {
+        findByType = findByStreet = findByCity = "";
+        findByEndDate = query;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/findReservationsByCity")
+    public String viewReservationsPagePageByCity(Model model, @RequestParam String query) {
+        findByType = findByEndDate = findByStreet = "";
+        findByCity = query;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/findReservationsByStreet")
+    public String viewReservationsPagePageByStreet(Model model, @RequestParam String query) {
+        findByType = findByEndDate = findByCity = "";
+        findByStreet = query;
+        return "redirect:/view/reservations";
+    }
+
+    @PostMapping("view/findReservationsByType")
+    public String viewReservationsPagePageByType(Model model, @RequestParam String query) {
+        findByEndDate = findByCity = findByStreet = "";
+        findByType = query;
+        return "redirect:/view/reservations";
     }
 
     @GetMapping("view/showNewReservationForm")
