@@ -68,12 +68,18 @@
         </tr>
         </tbody>
     </table>
-    <form action="#" th:action="@{/view/sortVenuesByCity}"  method="post">
-        <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
-    </form>
-    <form action="#" th:action="@{/view/sortVenuesByStreet}"  method="post">
-        <button type="submit" class="btn btn-info col-2"> Sort data by Street</button>
-    </form>
+    <div class="row col-sm-6">
+        <div class="col-sm-4">
+            <form action="#" th:action="@{/view/sortVenuesByCity}"  method="post">
+                <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <form action="#" th:action="@{/view/sortVenuesByCity}"  method="post">
+                <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>

@@ -46,7 +46,33 @@
     <hr>
     <h2>List of Reservations</h2>
 
-    <a th:href="@{/view/showNewReservationForm}" class="btn btn-primary btn-sm mb-3"> Add Reservation </a>
+    <!-- <a th:href="@{/view/showNewReservationForm}" class="btn btn-primary btn-sm mb-3"> Add Reservation </a> -->
+
+    <div class="row col-sm-12">
+        <div class="col-sm-4">
+            <a th:href="@{/view/showNewReservationForm}" class="btn btn-primary btn-sm mb-3"> Add Reservation </a>
+        </div>
+        <div class="col-sm-2">
+            <form action="#" th:action="@{/view/sortReservationsByEndDate}"  method="post">
+                <button type="submit" class="btn btn-info col-2"> Sort data by End date</button>
+            </form>
+        </div>
+        <div class="col-sm-2">
+            <form action="#" th:action="@{/view/sortReservationsByStreet}"  method="post">
+                <button type="submit" class="btn btn-info col-2"> Sort data by Street</button>
+            </form>
+        </div>
+        <div class="col-sm-2">
+            <form action="#" th:action="@{/view/sortReservationsByCity}"  method="post">
+                <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
+            </form>
+        </div>
+        <div class="col-sm-2">
+            <form action="#" th:action="@{/view/sortReservationsByType}"  method="post">
+                <button type="submit" class="btn btn-info col-2"> Sort data by Field Type</button>
+            </form>
+        </div>
+    </div>
 
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
@@ -75,7 +101,6 @@
                    th:href="@{/view/deleteReservation/{id}(id=${reservation.id})}" class="btn btn-danger">Delete</a>
                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/view/deleteReservation/{id}(id=${reservation.id})}"
                    class="btn btn-danger">Delete</a>
-
             </td>
         </tr>
         </tbody>
@@ -103,29 +128,14 @@
             </div>
         </div>
     </div>
-
-    <form action="#" th:action="@{/view/sortReservationsByEndDate}"  method="post">
-        <button type="submit" class="btn btn-info col-2"> Sort data by End date</button>
-    </form>
-    <form action="#" th:action="@{/view/sortReservationsByStreet}"  method="post">
-        <button type="submit" class="btn btn-info col-2"> Sort data by Street</button>
-    </form>
-    <form action="#" th:action="@{/view/sortReservationsByCity}"  method="post">
-        <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
-    </form>
-    </form>
-    <form action="#" th:action="@{/view/sortReservationsByType}"  method="post">
-        <button type="submit" class="btn btn-info col-2"> Sort data by Field Type</button>
-    </form>
-
-
+    <br></br>
     <form action="#" th:action="@{/view/findReservationsByEndDate}" method="post">
         <input type="text" th:value="${query}" name="query" placeholder="YYYY-MM-DD HH:mm" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by end date</button>
     </form>
 
     <form action="#" th:action="@{/view/findReservationsByCity}" method="post">
-        <input type="text" th:value="${query}" name="query" placeholder="city name" />
+        <input type="text" th:value="${query}" name="query" placeholder="City name" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by City</button>
     </form>
 
@@ -133,10 +143,12 @@
         <input type="text" th:value="${query}" name="query" placeholder="Street name" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by Street</button>
     </form>
+
     <form action="#" th:action="@{/view/findReservationsByType}" method="post">
-        <input type="text" th:value="${query}" name="query" placeholder="Street name" />
+        <input type="text" th:value="${query}" name="query" placeholder="Field Type" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by Field Type</button>
     </form>
+
 
     <!--    <div th:text="${#authentication.name}" ></div>-->
 </div>
