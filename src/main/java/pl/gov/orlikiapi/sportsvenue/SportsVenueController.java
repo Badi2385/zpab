@@ -38,13 +38,13 @@ public class SportsVenueController {
         return "sportsVenues";
     }
 
-    @PostMapping("view/sortVenuesByCity")
+    @GetMapping("view/sortVenuesByCity")
     public String viewRolesPageByCity(Model model) {
         sortByCity = !sortByCity;
         return "redirect:/view/sportsVenues";
     }
 
-    @PostMapping("view/sortVenuesByStreet")
+    @GetMapping("view/sortVenuesByStreet")
     public String viewRolesPageByStreet(Model model) {
         sortByStreet = !sortByStreet;
         return "redirect:/view/sportsVenues";

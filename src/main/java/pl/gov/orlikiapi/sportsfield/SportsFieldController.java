@@ -52,19 +52,19 @@ public class SportsFieldController {
         return "sportsFields";
     }
 
-    @PostMapping("view/sortFieldsByCity")
+    @GetMapping("view/sortFieldsByCity")
     public String viewRolesPageByCity(Model model) {
         sortByCity = !sortByCity;
         return "redirect:/view/sportsFields";
     }
 
-    @PostMapping("view/sortFieldsByStreet")
+    @GetMapping("view/sortFieldsByStreet")
     public String viewRolesPageByStreet(Model model) {
         sortByStreet = !sortByStreet;
         return "redirect:/view/sportsFields";
     }
 
-    @PostMapping("view/sortFieldsByType")
+    @GetMapping("view/sortFieldsByType")
     public String viewRolesPageByType(Model model) {
         sortByType = !sortByType;
         return "redirect:/view/sportsFields";

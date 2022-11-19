@@ -30,7 +30,7 @@ public class SportsFieldTypeController {
         return "fieldTypes";
     }
 
-    @PostMapping("view/sortFieldTypes")
+    @GetMapping("view/sortFieldTypes")
     public String viewRolesPageByCity(Model model) {
         isSorted = !isSorted;
         return "redirect:/view/fieldTypes";

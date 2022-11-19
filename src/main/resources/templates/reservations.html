@@ -53,22 +53,22 @@
             <a th:href="@{/view/showNewReservationForm}" class="btn btn-primary btn-sm mb-3"> Add Reservation </a>
         </div>
         <div class="col-sm-2">
-            <form action="#" th:action="@{/view/sortReservationsByEndDate}"  method="post">
+            <form action="#" th:action="@{/view/sortReservationsByEndDate}"  method="get">
                 <button type="submit" class="btn btn-info col-2"> Sort data by End date</button>
             </form>
         </div>
         <div class="col-sm-2">
-            <form action="#" th:action="@{/view/sortReservationsByStreet}"  method="post">
+            <form action="#" th:action="@{/view/sortReservationsByStreet}"  method="get">
                 <button type="submit" class="btn btn-info col-2"> Sort data by Street</button>
             </form>
         </div>
         <div class="col-sm-2">
-            <form action="#" th:action="@{/view/sortReservationsByCity}"  method="post">
+            <form action="#" th:action="@{/view/sortReservationsByCity}"  method="get">
                 <button type="submit" class="btn btn-info col-2"> Sort data by City</button>
             </form>
         </div>
         <div class="col-sm-2">
-            <form action="#" th:action="@{/view/sortReservationsByType}"  method="post">
+            <form action="#" th:action="@{/view/sortReservationsByType}"  method="get">
                 <button type="submit" class="btn btn-info col-2"> Sort data by Field Type</button>
             </form>
         </div>
@@ -129,22 +129,22 @@
         </div>
     </div>
     <br></br>
-    <form action="#" th:action="@{/view/findReservationsByEndDate}" method="post">
+    <form action="#" th:action="@{/view/findReservationsByEndDate}" method="get">
         <input type="text" th:value="${query}" name="query" placeholder="YYYY-MM-DD HH:mm" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by end date</button>
     </form>
 
-    <form action="#" th:action="@{/view/findReservationsByCity}" method="post">
+    <form action="#" th:action="@{/view/findReservationsByCity}" method="get">
         <input type="text" th:value="${query}" name="query" placeholder="City name" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by City</button>
     </form>
 
-    <form action="#" th:action="@{/view/findReservationsByStreet}" method="post">
+    <form action="#" th:action="@{/view/findReservationsByStreet}" method="get">
         <input type="text" th:value="${query}" name="query" placeholder="Street name" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by Street</button>
     </form>
 
-    <form action="#" th:action="@{/view/findReservationsByType}" method="post">
+    <form action="#" th:action="@{/view/findReservationsByType}" method="get">
         <input type="text" th:value="${query}" name="query" placeholder="Field Type" />
         <button type="submit" class="btn btn-info col-2"> Filter reservations by Field Type</button>
     </form>

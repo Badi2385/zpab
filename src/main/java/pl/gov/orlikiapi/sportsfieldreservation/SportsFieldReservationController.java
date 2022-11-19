@@ -57,52 +57,52 @@ public class SportsFieldReservationController {
         return paginatedReservations;
     }
 
-    @PostMapping("view/sortReservationsByCity")
+    @GetMapping("view/sortReservationsByCity")
     public String viewReservationsPageByCity(Model model) {
         sortByCity = !sortByCity;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/sortReservationsByStreet")
+    @GetMapping("view/sortReservationsByStreet")
     public String viewReservationsPageByStreet(Model model) {
         sortByStreet = !sortByStreet;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/sortReservationsByEndDate")
+    @GetMapping("view/sortReservationsByEndDate")
     public String viewReservationsPagePageByEndDate(Model model) {
         sortByEndDate = !sortByEndDate;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/sortReservationsByType")
+    @GetMapping("view/sortReservationsByType")
     public String viewReservationsPagePageByType(Model model) {
         sortByType = !sortByType;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/findReservationsByEndDate")
+    @GetMapping("view/findReservationsByEndDate")
     public String viewReservationsPagePageByEndDate(Model model, @RequestParam String query) {
         findByType = findByStreet = findByCity = "";
         findByEndDate = query;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/findReservationsByCity")
+    @GetMapping("view/findReservationsByCity")
     public String viewReservationsPagePageByCity(Model model, @RequestParam String query) {
         findByType = findByEndDate = findByStreet = "";
         findByCity = query;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/findReservationsByStreet")
+    @GetMapping("view/findReservationsByStreet")
     public String viewReservationsPagePageByStreet(Model model, @RequestParam String query) {
         findByType = findByEndDate = findByCity = "";
         findByStreet = query;
         return "redirect:/view/reservations";
     }
 
-    @PostMapping("view/findReservationsByType")
+    @GetMapping("view/findReservationsByType")
     public String viewReservationsPagePageByType(Model model, @RequestParam String query) {
         findByEndDate = findByCity = findByStreet = "";
         findByType = query;
