@@ -11,10 +11,7 @@ import pl.gov.orlikiapi.role.model.Role;
 import pl.gov.orlikiapi.user.dto.UserRegistrationDto;
 import pl.gov.orlikiapi.user.model.User;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +42,37 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void saveUser(User user) {
-        this.userRepository.save(user);
+        if (user.getUsername().isEmpty() || user.getPassword().isEmpty() || user.getRoles().isEmpty())
+        {
+            throw new RuntimeException("You must provide Name, Password and Role for the new user");
+        }
+        else
+        {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            // To be able to delete the user after manual update, we must add new role into roles table
+            List<Role> roleList = new ArrayList<>();
+            for(Role role : user.getRoles())
+            {
+                roleList.add(new Role(role.getName()));
+            }
+            user.setRoles(roleList);
+            this.userRepository.save(user);
+        }
+    }
+
+    @Override
+    public void updateUser(User user) {
+        if (user.getUsername().isEmpty() || user.getRoles().isEmpty())
+        {
+            throw new RuntimeException("You must provide Name, Password and Role for the new user");
+        }
+        else
+        {
+            User toBeUpdated = getUserById(user.getId());
+            toBeUpdated.setUsername(user.getUsername());
+            toBeUpdated.setRoles(user.getRoles());
+            this.userRepository.save(toBeUpdated);
+        }
     }
 
     @Override

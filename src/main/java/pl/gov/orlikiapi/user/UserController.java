@@ -35,6 +35,12 @@ public class UserController {
         return "redirect:/view/users";
     }
 
+    @PostMapping("view/updateUser")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
+        return "redirect:/view/users";
+    }
+
     @GetMapping("view/showUpdateUserForm/{id}")
     public String showUpdateUserForm(@PathVariable(value = "id") Long id, Model model) {
         User user = userService.getUserById(id);

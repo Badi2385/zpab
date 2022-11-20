@@ -32,7 +32,7 @@ public class UserRestController {
 
     @PostMapping("users")
     public User createUser(@Valid @RequestBody User user) {
-        return userRepository.save(user);
+            return userRepository.save(user);
     }
 
     @PutMapping("users/{id}")
@@ -40,7 +40,6 @@ public class UserRestController {
                                                @Valid @RequestBody User userDetails) throws ResourceNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id : " + userId));
-
         user.setUsername(userDetails.getUsername());
         final User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
